@@ -266,6 +266,7 @@ require('lazy').setup({
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>E', group = '[E]xplore' },
       },
     },
   },
@@ -323,15 +324,6 @@ require('lazy').setup({
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
-        -- You can put your default mappings / updates / etc. in here
-        --  All the info you're looking for is in `:help telescope.setup()`
-        --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
-        -- pickers = {}
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -847,8 +839,24 @@ require('lazy').setup({
         return '%2l:%-2v'
       end
 
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
+      -- Floating file explorer.
+      local MiniFiles = require 'mini.files'
+      MiniFiles.setup {
+        mappings = {
+          close = '<Esc>',
+        },
+      }
+
+      -- Shortcut for opening `mini.files` at the directory of the current file.
+      vim.keymap.set('n', '<leader>E.', function()
+        MiniFiles.open(vim.api.nvim_buf_get_name(0))
+      end, { desc = '[E]xplore [.]current file directory' })
+
+      -- Shortcut for opening `mini.files` at the current working directory
+      -- (the path in which `nvim` was started).
+      vim.keymap.set('n', '<leader>E^', function()
+        MiniFiles.open(vim.loop.cwd())
+      end, { desc = '[E]xplore [^]current working directory' })
     end,
   },
   { -- Highlight, edit, and navigate code
