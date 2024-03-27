@@ -203,9 +203,9 @@ require('lazy').setup({
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
         ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
-        ['<leader>E'] = { name = '[E]xplore', _ = 'which_key_ignore' },
+        ['<leader>\\'] = { name = 'Neotree', _ = 'which_key_ignore' },
       }
-      -- visual mode
+      -- Visual mode
       require('which-key').register({
         ['<leader>h'] = { 'Git [H]unk' },
       }, { mode = 'v' })
@@ -737,21 +737,20 @@ require('lazy').setup({
       MiniFiles.setup {
         mappings = {
           close = '<Esc>',
+          show_help = '?',
+        },
+        windows = {
+          width_nofocus = 20,
         },
       }
 
       -- Shortcut for opening `mini.files` at the directory of the current file.
-      vim.keymap.set('n', '<leader>E.', function()
+      vim.keymap.set('n', [[\]], function()
         MiniFiles.open(vim.api.nvim_buf_get_name(0))
-      end, { desc = '[E]xplore [.]current file directory' })
-
-      -- Shortcut for opening `mini.files` at the current working directory
-      -- (the path in which `nvim` was started).
-      vim.keymap.set('n', '<leader>E^', function()
-        MiniFiles.open(vim.loop.cwd())
-      end, { desc = '[E]xplore [^]current working directory' })
+      end, { desc = 'Open mini.files at directory of current file', noremap = true })
     end,
   },
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
