@@ -4,6 +4,7 @@
 return {
   'nvim-neo-tree/neo-tree.nvim',
   branch = 'v3.x',
+  lazy = false,
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons',
@@ -48,37 +49,34 @@ return {
   },
   keys = {
     {
-      '<leader>\\f',
+      [[<leader>\f]],
       function()
         require('neo-tree.command').execute {
           toggle = true,
           source = 'filesystem',
-          position = 'right',
         }
       end,
-      desc = 'Toggle [\\]Neotree [F]ilesystem',
+      desc = 'Toggle [\\]Neotree [F]ile explorer',
     },
     {
-      '<leader>\\b',
+      [[<leader>\b]],
       function()
         require('neo-tree.command').execute {
           toggle = true,
           source = 'buffers',
-          position = 'right',
         }
       end,
-      desc = 'Toggle [\\]Neotree [B]uffers',
+      desc = 'Toggle [\\]Neotree [B]uffer explorer',
     },
     {
-      '<leader>\\g',
+      [[<leader>\g]],
       function()
         require('neo-tree.command').execute {
           toggle = true,
           source = 'git_status',
-          position = 'right',
         }
       end,
-      desc = 'Toggle [\\]Neotree [G]it status',
+      desc = 'Toggle [\\]Neotree [G]it explorer',
     },
   },
 }
