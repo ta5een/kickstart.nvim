@@ -31,6 +31,9 @@ vim.opt.showmode = false
 --  See `:help 'clipboard'`
 vim.opt.clipboard = 'unnamedplus'
 
+-- Disable wrapping
+vim.opt.wrap = false
+
 -- Enable break indent
 vim.opt.breakindent = true
 
