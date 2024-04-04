@@ -168,6 +168,70 @@ require('lazy').setup({
     opts = {
       signcolumn = true,
       numhl = true,
+      on_attach = function(bufnr)
+        local gs = package.loaded.gitsigns
+
+        local function map(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, l, r, opts)
+        end
+
+        -- Navigation
+
+        map('n', ']c', function()
+          if vim.wo.diff then
+            return ']c'
+          end
+          vim.schedule(gs.next_hunk)
+          return '<Ignore>'
+        end, { expr = true, desc = 'Next [C]hange' })
+
+        map('n', '[c', function()
+          if vim.wo.diff then
+            return '[c'
+          end
+          vim.schedule(gs.prev_hunk)
+          return '<Ignore>'
+        end, { expr = true, desc = 'Previous [C]hange' })
+
+        -- Actions
+
+        -- Hunk actions
+        map('n', '<leader>gp', gs.preview_hunk, { desc = '[P]review hunk' })
+        map('n', '<leader>gs', gs.stage_hunk, { desc = '[S]tage hunk' })
+        map('n', '<leader>gu', gs.undo_stage_hunk, { desc = '[U]ndo stage hunk' })
+        map('v', '<leader>gs', function()
+          gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
+        end, { desc = '[S]tage hunk' })
+        map('n', '<leader>gr', gs.reset_hunk, { desc = '[R]eset hunk' })
+        map('v', '<leader>gr', function()
+          gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
+        end, { desc = '[R]eset hunk' })
+
+        -- Buffer actions
+        map('n', '<leader>gS', gs.stage_buffer, { desc = '[S]tage buffer' })
+        map('n', '<leader>gR', gs.reset_buffer, { desc = '[R]eset buffer' })
+
+        -- Diffing
+        map('n', '<leader>gd', gs.diffthis, { desc = '[D]iff this hunk' })
+        map('n', '<leader>gD', function()
+          gs.diffthis '~'
+          -- TODO: Is this a correct description of what this does?
+        end, { desc = '[D]iff this hunk against previous commit' })
+
+        -- Blaming
+        map('n', '<leader>gtb', gs.toggle_current_line_blame, { desc = '[T]oggle current line [B]lame' })
+        map('n', '<leader>gb', function()
+          gs.blame_line { full = true }
+        end, { desc = '[B]lame line' })
+
+        -- Toggle deleted lines
+        map('n', '<leader>gtd', gs.toggle_deleted, { desc = '[T]oggle show [D]eleted lines' })
+
+        -- Visually select inside the current hunk
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'Inside this hunk' })
+      end,
     },
   },
 
