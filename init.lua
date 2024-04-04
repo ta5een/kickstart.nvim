@@ -34,6 +34,9 @@ vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
 
+-- Disable wrapping
+vim.opt.wrap = false
+
 -- Enable break indent
 vim.opt.breakindent = true
 
