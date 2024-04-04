@@ -74,6 +74,9 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Color the 80th and 120th columns.
+vim.opt.colorcolumn = '80,120'
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
