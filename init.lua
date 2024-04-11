@@ -394,6 +394,20 @@ require('lazy').setup({
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
       { 'folke/neodev.nvim', opts = {} },
+
+      { -- Lazy-loading `nvim-navbuddy` before loading LSP
+        -- https://github.com/SmiteshP/nvim-navbuddy?tab=readme-ov-file#lazy-loading
+        'SmiteshP/nvim-navbuddy',
+        dependencies = {
+          'SmiteshP/nvim-navic',
+          'MunifTanjim/nui.nvim',
+        },
+        opts = {
+          lsp = {
+            auto_attach = true,
+          },
+        },
+      },
     },
     config = function()
       -- Brief aside: **What is LSP?**
