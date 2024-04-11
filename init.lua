@@ -465,6 +465,20 @@ require('lazy').setup({
 
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
+
+      { -- Lazy-loading `nvim-navbuddy` before loading LSP
+        -- https://github.com/SmiteshP/nvim-navbuddy?tab=readme-ov-file#lazy-loading
+        'SmiteshP/nvim-navbuddy',
+        dependencies = {
+          'SmiteshP/nvim-navic',
+          'MunifTanjim/nui.nvim',
+        },
+        opts = {
+          lsp = {
+            auto_attach = true,
+          },
+        },
+      },
     },
     config = function()
       -- Brief aside: **What is LSP?**
