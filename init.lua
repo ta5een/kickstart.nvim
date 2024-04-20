@@ -197,6 +197,7 @@ require('lazy').setup({
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
+    version = '^0.8.0',
     opts = {
       signcolumn = true,
       numhl = true,
@@ -719,6 +720,7 @@ require('lazy').setup({
 
   { -- Autoformat
     'stevearc/conform.nvim',
+    version = '^5.6.0',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
@@ -881,6 +883,7 @@ require('lazy').setup({
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
+    version = '^0.12.0',
     config = function()
       -- Better Around/Inside textobjects
       --
@@ -933,6 +936,7 @@ require('lazy').setup({
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    version = '^0.9.2',
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
