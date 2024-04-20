@@ -200,8 +200,11 @@ require('lazy').setup({
     opts = {
       signcolumn = true,
       numhl = true,
+      -- NOTE: Consider moving this configuration into a custom plugin override
+      -- (aka `custom.plugins.gitsigns`) to avoid potential rebase/merge
+      -- conflicts from upstream.
       on_attach = function(bufnr)
-        local gs = package.loaded.gitsigns
+        local gitsigns = require 'gitsigns'
 
         local function map(mode, l, r, opts)
           opts = opts or {}
@@ -210,56 +213,46 @@ require('lazy').setup({
         end
 
         -- Navigation
-
         map('n', ']c', function()
           if vim.wo.diff then
-            return ']c'
+            vim.cmd.normal { ']c', bang = true }
+          else
+            gitsigns.nav_hunk 'next'
           end
-          vim.schedule(gs.next_hunk)
-          return '<Ignore>'
-        end, { expr = true, desc = 'Next [C]hange' })
+        end, { desc = 'Next [C]hange' })
 
         map('n', '[c', function()
           if vim.wo.diff then
-            return '[c'
+            vim.cmd.normal { '[c', bang = true }
+          else
+            gitsigns.nav_hunk 'prev'
           end
-          vim.schedule(gs.prev_hunk)
-          return '<Ignore>'
-        end, { expr = true, desc = 'Previous [C]hange' })
+        end, { desc = 'Previous [C]hange' })
 
         -- Actions
+        -- visual mode
+        map('v', '<leader>hs', function()
+          gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
+        end, { desc = 'stage git hunk' })
+        map('v', '<leader>hr', function()
+          gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
+        end, { desc = 'reset git hunk' })
+        -- normal mode
+        map('n', '<leader>hs', gitsigns.stage_hunk, { desc = '[s]tage hunk' })
+        map('n', '<leader>hr', gitsigns.reset_hunk, { desc = '[r]eset hunk' })
+        map('n', '<leader>hS', gitsigns.stage_buffer, { desc = '[S]tage buffer' })
+        map('n', '<leader>hu', gitsigns.undo_stage_hunk, { desc = '[u]ndo stage hunk' })
+        map('n', '<leader>hR', gitsigns.reset_buffer, { desc = '[R]eset buffer' })
+        map('n', '<leader>hp', gitsigns.preview_hunk, { desc = '[p]review hunk' })
+        map('n', '<leader>hb', gitsigns.blame_line, { desc = '[b]lame line' })
+        map('n', '<leader>hd', gitsigns.diffthis, { desc = '[d]iff against index' })
+        map('n', '<leader>hD', function()
+          gitsigns.diffthis '@'
+        end, { desc = '[D]iff against last commit' })
 
-        -- Hunk actions
-        map('n', '<leader>gp', gs.preview_hunk, { desc = '[P]review hunk' })
-        map('n', '<leader>gs', gs.stage_hunk, { desc = '[S]tage hunk' })
-        map('n', '<leader>gu', gs.undo_stage_hunk, { desc = '[U]ndo stage hunk' })
-        map('v', '<leader>gs', function()
-          gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = '[S]tage hunk' })
-        map('n', '<leader>gr', gs.reset_hunk, { desc = '[R]eset hunk' })
-        map('v', '<leader>gr', function()
-          gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = '[R]eset hunk' })
-
-        -- Buffer actions
-        map('n', '<leader>gS', gs.stage_buffer, { desc = '[S]tage buffer' })
-        map('n', '<leader>gR', gs.reset_buffer, { desc = '[R]eset buffer' })
-
-        -- Diffing
-        map('n', '<leader>gd', gs.diffthis, { desc = '[D]iff this hunk' })
-        map('n', '<leader>gD', function()
-          gs.diffthis '~'
-          -- TODO: Is this a correct description of what this does?
-        end, { desc = '[D]iff this hunk against previous commit' })
-
-        -- Blaming
-        map('n', '<leader>gtb', gs.toggle_current_line_blame, { desc = '[T]oggle current line [B]lame' })
-        map('n', '<leader>gb', function()
-          gs.blame_line { full = true }
-        end, { desc = '[B]lame line' })
-
-        -- Toggle deleted lines
-        map('n', '<leader>gtd', gs.toggle_deleted, { desc = '[T]oggle show [D]eleted lines' })
+        -- Toggles
+        map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle current line [b]lame' })
+        map('n', '<leader>tD', gitsigns.toggle_deleted, { desc = '[T]oggle show [D]eleted lines' })
 
         -- Visually select inside the current hunk
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'Inside this hunk' })
