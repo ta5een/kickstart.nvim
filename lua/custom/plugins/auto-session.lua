@@ -3,6 +3,7 @@
 --- @type LazySpec
 return {
   'rmagatti/auto-session',
+  version = '^2.0.0',
   config = function()
     ---@diagnostic disable-next-line: missing-fields
     require('auto-session').setup {
