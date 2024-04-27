@@ -693,6 +693,10 @@ require('lazy').setup({
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
 
+        experimental = {
+          ghost_text = true,
+        },
+
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
         --
