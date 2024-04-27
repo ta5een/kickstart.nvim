@@ -324,7 +324,11 @@ require('lazy').setup({
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-        { '<leader>E', group = '[E]xplore' },
+        -- TODO: There is already a key chain for toggling settings: <leader>t
+        -- Since all Trouble keymaps refer to toggling different modes, it may
+        -- be worthwhile to consolidate them all into one common key chain.
+        { '<leader>x', group = 'Trouble' },
+        { '<leader>\\', group = 'Neotree' },
       },
     },
   },
