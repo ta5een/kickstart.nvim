@@ -261,6 +261,10 @@ require('lazy').setup({
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
         ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
+        -- TODO: There is already a key chain for toggling settings: <leader>t
+        -- Since all Trouble keymaps refer to toggling different modes, it may
+        -- be worthwhile to consolidate them all into one common key chain.
+        ['<leader>x'] = { name = 'Trouble', _ = 'which_key_ignore' },
         ['<leader>\\'] = { name = 'Neotree', _ = 'which_key_ignore' },
       }
       -- Visual mode
