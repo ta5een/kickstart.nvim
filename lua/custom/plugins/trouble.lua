@@ -1,58 +1,43 @@
 --- 🚦 A pretty diagnostics, references, telescope results, quickfix and
 --- location list to help you solve all the trouble your code is causing.
---- https://github.com/folke/trouble.nvim
+---  https://github.com/folke/trouble.nvim
 --- @type LazySpec
 return {
   'folke/trouble.nvim',
+  branch = 'dev',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  ---@type trouble.Config
+  opts = {},
   keys = {
     {
       '<leader>xx',
-      function()
-        require('trouble').toggle()
-      end,
-      mode = 'n',
-      desc = 'Trouble: toggle window',
+      '<cmd>Trouble diagnostics toggle<cr>',
+      desc = 'Trouble: Toggle Diagnostics',
     },
     {
-      '<leader>xw',
-      function()
-        require('trouble').toggle 'workspace_diagnostics'
-      end,
-      mode = 'n',
-      desc = 'Trouble: toggle [W]orkspace diagnostics',
+      '<leader>xX',
+      '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+      desc = 'Trouble: Toggle Buffer Diagnostics',
     },
     {
-      '<leader>xd',
-      function()
-        require('trouble').toggle 'document_diagnostics'
-      end,
-      mode = 'n',
-      desc = 'Trouble: toggle [D]ocument diagnostics',
+      '<leader>cs',
+      '<cmd>Trouble symbols toggle focus=false<cr>',
+      desc = 'Trouble: Toggle Symbols',
     },
     {
-      '<leader>xq',
-      function()
-        require('trouble').toggle 'quickfix'
-      end,
-      mode = 'n',
-      desc = 'Trouble: toggle [Q]uickfix',
+      '<leader>cl',
+      '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
+      desc = 'Trouble: Toggle LSP',
     },
     {
-      '<leader>xl',
-      function()
-        require('trouble').toggle 'loclist'
-      end,
-      mode = 'n',
-      desc = 'Trouble: toggle [L]oclist',
+      '<leader>xL',
+      '<cmd>Trouble loclist toggle<cr>',
+      desc = 'Trouble: Toggle Location List',
     },
     {
-      'gR',
-      function()
-        require('trouble').toggle 'lsp_references'
-      end,
-      mode = 'n',
-      desc = 'Trouble: toggle LSP references',
+      '<leader>xQ',
+      '<cmd>Trouble qflist toggle<cr>',
+      desc = 'Trouble: Toggle Quickfix List',
     },
   },
 }
