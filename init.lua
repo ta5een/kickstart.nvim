@@ -560,7 +560,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
         --
-
+        clangd = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -575,6 +575,9 @@ require('lazy').setup({
             },
           },
         },
+        rust_analyzer = {},
+        tsserver = {},
+        yamlls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -589,8 +592,12 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
+        'eslint_d', -- Makes eslint the fastest linter on the planet.
+        'prettierd', -- prettier, as a daemon, for improved formatting speed.
+        'stylua', -- An opinionated Lua code formatter.
+        'vale', -- A markup-aware linter for prose built with speed and extensibility in mind.
       })
+
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
