@@ -935,7 +935,10 @@ require('lazy').setup({
           show_help = '?',
         },
         windows = {
+          preview = true,
+          width_focus = 50,
           width_nofocus = 20,
+          width_preview = 80,
         },
       }
 
