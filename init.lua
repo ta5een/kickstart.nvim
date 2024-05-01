@@ -124,6 +124,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- [[ Godot LSP Integration ]]
+-- If Neovim is opened inside a Godot project, this will create and listen to
+-- a named pipe to communicate with the Godot Language Server.
+local godotProject = vim.fs.find('project.godot', { upward = true })[1]
+if godotProject ~= nil then
+  -- Ensure the named pipe is created at the project root
+  local godotProjectRoot = vim.fs.dirname(godotProject)
+  local godotPipePath = vim.fs.normalize(godotProjectRoot .. '/godot.pipe')
+  vim.fn.serverstart(godotPipePath)
+end
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -612,6 +623,9 @@ require('lazy').setup({
           end,
         },
       }
+
+      -- Use built-in GDScript support
+      require('lspconfig').gdscript.setup {}
     end,
   },
 
@@ -854,6 +868,8 @@ require('lazy').setup({
       ensure_installed = {
         'bash',
         'c',
+        'gdscript',
+        'godot_resource',
         'html',
         'javascript',
         'lua',
