@@ -1,0 +1,8 @@
+(?i)lua
+(?i)neovim
+(?i)powershell
+(?i)url
+cmd
+config
+ripgrep
+utils
