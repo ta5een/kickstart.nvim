@@ -782,6 +782,20 @@ require('lazy').setup({
     'rebelot/kanagawa.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
+      require('kanagawa').setup {
+        overrides = function(colors)
+          return {
+            RainbowDelimiterRed = { fg = colors.palette.waveRed },
+            RainbowDelimiterYellow = { fg = colors.palette.carpYellow },
+            RainbowDelimiterBlue = { fg = colors.palette.springBlue },
+            RainbowDelimiterOrange = { fg = colors.palette.surimiOrange },
+            RainbowDelimiterGreen = { fg = colors.palette.springGreen },
+            RainbowDelimiterViolet = { fg = colors.palette.oniViolet },
+            RainbowDelimiterCyan = { fg = colors.palette.fujiWhite },
+          }
+        end,
+      }
+
       -- Load the colorscheme here.
       vim.cmd.colorscheme 'kanagawa'
       -- You can configure highlights by doing something like:
