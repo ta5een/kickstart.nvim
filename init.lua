@@ -871,12 +871,12 @@ require('lazy').setup({
         overrides = function(colors)
           return {
             RainbowDelimiterRed = { fg = colors.palette.waveRed },
-            RainbowDelimiterYellow = { fg = colors.palette.carpYellow },
+            RainbowDelimiterYellow = { fg = colors.palette.autumnYellow },
             RainbowDelimiterBlue = { fg = colors.palette.springBlue },
             RainbowDelimiterOrange = { fg = colors.palette.surimiOrange },
-            RainbowDelimiterGreen = { fg = colors.palette.springGreen },
-            RainbowDelimiterViolet = { fg = colors.palette.oniViolet },
-            RainbowDelimiterCyan = { fg = colors.palette.fujiWhite },
+            RainbowDelimiterGreen = { fg = colors.palette.dragonGreen },
+            RainbowDelimiterViolet = { fg = colors.palette.springViolet1 },
+            RainbowDelimiterCyan = { fg = colors.palette.lightBlue },
           }
         end,
       }
