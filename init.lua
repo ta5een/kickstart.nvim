@@ -669,7 +669,15 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
-        clangd = {},
+        clangd = {
+          cmd = {
+            'clangd',
+            '--query-driver=/Users/taseen/Developer/@ta5een/t5os/toolchain/local/i686/bin/i686-elf-gcc',
+            '--enable-config',
+            '--background-index',
+            '--clang-tidy',
+          },
+        },
         gopls = {},
         lua_ls = {
           -- cmd = { ... },
@@ -755,7 +763,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = false, cpp = true }
+        local disable_filetypes = { c = false, cpp = false }
         local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
           lsp_format_opt = 'never'
