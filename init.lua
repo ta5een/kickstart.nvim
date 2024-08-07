@@ -899,15 +899,6 @@ require('lazy').setup({
       vim.cmd.colorscheme 'kanagawa'
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
-
-      -- Link missing highlights for new capture groups currently unsupported in Kanagawa
-      -- https://www.reddit.com/r/neovim/comments/19aratu/psa_nvimtreesitter_breaking_changes_on_highlight/
-      -- https://github.com/nvim-treesitter/nvim-treesitter/pull/5895
-      -- https://github.com/nvim-treesitter/nvim-treesitter/commit/1ae9b0e4558fe7868f8cda2db65239cfb14836d0
-      vim.cmd.hi 'link @include.typescript @keyword.import.typescript'
-      vim.cmd.hi 'link @include.tsx @keyword.import.tsx'
-      vim.cmd.hi 'link @conditional.typescript @keyword.conditional.typescript'
-      vim.cmd.hi 'link @conditional.tsx @keyword.conditional.tsx'
     end,
   },
 
