@@ -20,5 +20,11 @@ return {
         path = '~/Library/CloudStorage/OneDrive-UTS/_SUBJECTS/24AUT REAL-TIME OPERATING SYSTEMS',
       },
     },
+    completion = {
+      -- Set to false to disable completion.
+      nvim_cmp = true,
+      -- Trigger completion at 0 chars.
+      min_chars = 0,
+    },
   },
 }
