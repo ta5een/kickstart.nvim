@@ -971,7 +971,28 @@ require('lazy').setup({
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     dependencies = {
-      'windwp/nvim-ts-autotag',
+      {
+        'windwp/nvim-ts-autotag',
+        config = function()
+          ---@diagnostic disable-next-line: missing-fields
+          require('nvim-ts-autotag').setup {
+            opts = {
+              -- Defaults
+              enable_close = true, -- Auto close tags
+              enable_rename = true, -- Auto rename pairs of tags
+              enable_close_on_slash = false, -- Auto close on trailing </
+            },
+            -- Also override individual filetype configs, these take priority.
+            -- Empty by default, useful if one of the "opts" global settings
+            -- doesn't work well in a specific filetype
+            -- per_filetype = {
+            --   ['html'] = {
+            --     enable_close = false,
+            --   },
+            -- },
+          }
+        end,
+      },
     },
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
@@ -994,12 +1015,6 @@ require('lazy').setup({
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
-      autotag = {
-        enable = true,
-        enable_rename = true,
-        enable_close = true,
-        enable_close_on_slash = true,
-      },
       highlight = {
         enable = true,
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
