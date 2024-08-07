@@ -3,7 +3,7 @@
 --- @type LazySpec
 return {
   'epwalsh/obsidian.nvim',
-  version = '*', -- recommended, use latest release instead of latest commit
+  version = '^3.9.0', -- recommended, use latest release instead of latest commit
   lazy = true,
   ft = 'markdown',
   dependencies = {
