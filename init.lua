@@ -663,6 +663,7 @@ require('lazy').setup({
         typescript = { 'prettierd' },
         typescriptreact = { 'prettierd' },
         zig = { 'zig fmt' },
+        meson = { 'meson fmt' },
       },
     },
   },
