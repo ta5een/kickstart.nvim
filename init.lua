@@ -87,6 +87,9 @@ vim.o.confirm = true
 -- Color the 80th and 120th columns.
 vim.opt.colorcolumn = '80,120'
 
+-- LSP log grows infinitely, it should be opt-in
+vim.lsp.set_log_level 'OFF'
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
