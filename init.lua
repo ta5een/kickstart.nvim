@@ -81,6 +81,9 @@ vim.opt.confirm = true
 -- Color the 80th and 120th columns.
 vim.opt.colorcolumn = '80,120'
 
+-- Highlight the screen column of the cursor
+vim.opt.cursorcolumn = true
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
