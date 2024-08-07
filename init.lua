@@ -621,6 +621,11 @@ require('lazy').setup({
           end,
         },
       }
+
+      -- Since each version of ZLS is heavily tied to a version of Zig, both of
+      -- which will be managed by ZVM, I don't want Mason to automatically
+      -- install and configure it
+      require('lspconfig').zls.setup {}
     end,
   },
 
@@ -650,12 +655,14 @@ require('lazy').setup({
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
         }
       end,
+      ---@type table<string, conform.FiletypeFormatter>
       formatters_by_ft = {
         c = { 'clangd' },
         lua = { 'stylua' },
         javascript = { 'prettierd' },
         typescript = { 'prettierd' },
         typescriptreact = { 'prettierd' },
+        zig = { 'zig fmt' },
       },
     },
   },
