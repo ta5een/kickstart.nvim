@@ -164,6 +164,16 @@ require('lazy').setup({
   -- Use `opts = {}` to force a plugin to be loaded.
   --
 
+  -- "gc" to toggle comments linewise, "gb" to toggle comments blockwise
+  -- Althought Neovim has built-in support for comments in 0.10, it's too
+  -- limiting for my taste. Specifically, it only supports linewise comments,
+  -- and requires some configuration to behave similarly to Comment.nvim.
+  --
+  -- Some conversations to follow:
+  -- https://github.com/neovim/neovim/pull/28176
+  -- https://github.com/numToStr/Comment.nvim/issues/453
+  { 'numToStr/Comment.nvim', opts = {} },
+
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
   --    require('gitsigns').setup({ ... })
