@@ -208,8 +208,25 @@ require('lazy').setup({
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
-    version = '^0.8.0',
+    version = '^1.0.0',
     opts = {
+      -- signs = {
+      --   add = { text = '┃' },
+      --   change = { text = '┃' },
+      --   delete = { text = '_' },
+      --   topdelete = { text = '‾' },
+      --   changedelete = { text = '~' },
+      --   untracked = { text = '┆' },
+      -- },
+      -- signs_staged = {
+      --   add = { text = '┃' },
+      --   change = { text = '┃' },
+      --   delete = { text = '_' },
+      --   topdelete = { text = '‾' },
+      --   changedelete = { text = '~' },
+      --   untracked = { text = '┆' },
+      -- },
+      -- signs_staged_enable = true,
       signcolumn = true,
       numhl = true,
       -- NOTE: Consider moving this configuration into a custom plugin override
