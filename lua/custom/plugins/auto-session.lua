@@ -12,9 +12,9 @@ return {
         '/',
         '~/',
         '~/Desktop',
+        '~/Developer',
         '~/Documents',
         '~/Downloads',
-        '~/Projects',
       },
     }
 
