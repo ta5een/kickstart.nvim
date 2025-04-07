@@ -698,13 +698,13 @@ require('lazy').setup({
         -- ts_ls = {},
         --
         clangd = {
-          cmd = {
-            'clangd',
-            '--query-driver=/Users/taseen/Developer/@ta5een/t5os/toolchain/local/i686/bin/i686-elf-gcc',
-            '--enable-config',
-            '--background-index',
-            '--clang-tidy',
-          },
+          -- cmd = {
+          --   'clangd',
+          --   '--query-driver=/Users/taseen/Developer/dev.taseen.t5os/toolchain/local/i686/bin/i686-elf-gcc',
+          --   '--enable-config',
+          --   '--background-index',
+          --   '--clang-tidy',
+          -- },
         },
         gopls = {},
         lua_ls = {
