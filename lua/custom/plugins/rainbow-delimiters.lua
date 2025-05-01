@@ -3,5 +3,6 @@
 --- @type LazySpec
 return {
   'HiPhish/rainbow-delimiters.nvim',
-  version = '^0.3.0',
+  version = '^0.9.0',
+  enabled = true,
 }
