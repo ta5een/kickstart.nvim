@@ -689,15 +689,8 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
-        clangd = {
-          -- cmd = {
-          --   'clangd',
-          --   '--query-driver=/Users/taseen/Developer/dev.taseen.t5os/toolchain/local/i686/bin/i686-elf-gcc',
-          --   '--enable-config',
-          --   '--background-index',
-          --   '--clang-tidy',
-          -- },
-        },
+        clangd = {},
+        gopls = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -713,7 +706,7 @@ require('lazy').setup({
           },
         },
         rust_analyzer = {},
-        tsserver = {},
+        ts_ls = {},
         yamlls = {},
       }
 
