@@ -348,6 +348,7 @@ require('lazy').setup({
         -- be worthwhile to consolidate them all into one common key chain.
         { '<leader>x', group = 'Trouble' },
         { '<leader>\\', group = 'Neotree' },
+        { '<leader>d', group = '[D]ebug' },
       },
     },
   },
@@ -364,6 +365,8 @@ require('lazy').setup({
     event = 'VimEnter',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-dap.nvim',
+
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
         'nvim-telescope/telescope-fzf-native.nvim',
 
@@ -411,6 +414,8 @@ require('lazy').setup({
           },
         },
       }
+
+      require('telescope').load_extension 'dap'
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
