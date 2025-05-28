@@ -5,10 +5,13 @@ return {
   'rmagatti/auto-session',
   version = '^2.0.0',
   config = function()
+    -- Recommended sessionoptions config
+    vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+
     ---@diagnostic disable-next-line: missing-fields
     require('auto-session').setup {
       -- Suppress session creation/restoration for the following directories
-      auto_session_suppress_dirs = {
+      suppress_dirs = {
         '/',
         '~/',
         '~/Desktop',
